@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import Input from './components/input';
+import Results from './components/results';
 
 function App() {
   return (
     <div className="App">      
-      <Input />
+      <Results />
     </div>
   );
 }

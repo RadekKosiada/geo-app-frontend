@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 
-export default class Input extends Component {
+export default class Results extends Component {
   constructor() {
     super();
     this.state = {
-      testString: ''
+      geoObject: {}
     };
   }
   componentDidMount() {
     fetch('/api')
     .then(res => res.json())
-    .then(string => this.setState({testString: string}, () => console.log('String fetched from server ..', string)))
+    .then(geolocation => this.setState({geoObject: geolocation}, () => console.log('String fetched from server ..', geolocation)))
     .catch(err => (console.log))
   }
 
@@ -19,7 +19,7 @@ export default class Input extends Component {
       <div className="input">
         Label
         <input />
-        <p>{this.state.testString}</p>
+        <p>{this.state.geoObject.type}</p>
       </div>
     );
   }
