@@ -7,16 +7,20 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      latitude: "",
-      longitude: ""
+      geoObject: {}
     };
   }
-  
+  componentDidMount() {
+    fetch("/api")
+      .then(res => res.json())
+      .then(geolocation => this.setState({ geoObject: geolocation }))
+      .catch(err => console.log);
+  }
+
   render() {
-    console.log(latitude, longitude)
     return (
       <div className="App">
-        <Results />
+        <Results geoObject={this.state.geoObject} />
         <Map />
       </div>
     );
