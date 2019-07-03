@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { Component } from "react";
 
-export default function Input() {
-  return (
-    <div className="input">      
-        Label<input />    
-    </div>
-  );
-};
+export default class Input extends Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+
+  render() {
+    return (
+      <div className="input">
+        Label
+        <input />
+      </div>
+    );
+  }
+}
