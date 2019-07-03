@@ -1,3 +1,10 @@
 .App {
   text-align: center;
 }
+
+#map { 
+  display: inline-block;
+  height: 380px; 
+  width: 80%;
+  border: 1px solid black;
+}
