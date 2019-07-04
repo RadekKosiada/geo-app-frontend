@@ -7,8 +7,8 @@ export default function Results(props) {
   return (    
     <div className="results">
       <p />
-      {props.value && (<p>{props.value}</p>)}
-      {!props.value && (<p>your location</p>)}
+      {/* {props.value && (<p>{props.value}</p>)}
+      {!props.value && (<p>your location</p>)} */}
       <h3>{object.type}</h3>
       <p>Latitude: {object.lat}</p>
       <p>Longitude: {object.lng}</p>

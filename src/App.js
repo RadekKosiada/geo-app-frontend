@@ -8,10 +8,12 @@ class App extends Component {
     super(props);
     this.state = {
       geoObject: {},
-      value: ""
+      value: "",
+      showInput : true
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.submitOnEnter = this.submitOnEnter.bind(this);
   }
   componentDidMount() {
     fetch("/api")
@@ -22,20 +24,40 @@ class App extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    console.log("Submit fired!");
+    this.setState({
+      showInput: false
+    })
+    // axios.post
+  }
+  submitOnEnter(e) {
+    if(e.key === 'Enter') {
+      this.handleSubmit(e);
+    } else {
+      return;
+    }
   }
   handleChange(e) {
     this.setState({
       value: e.target.value
     });
   }
+
   render() {
     return (
       <div className="App">
-        <form className="" onSubmit={this.handleSubmit}>
-          <input type="text" autoComplete="off" placeholder="your desired location" name="answer" onChange={this.handleChange} />
-          <input className="button" type="submit" value="Submit" />
-        </form>
+         {this.state.showInput && (<form className="" onSubmit={this.handleSubmit}>
+         <input type="text" autoComplete="off" placeholder="your desired location" name="answer" onKeyPress={this.submitOnEnter} onChange={this.handleChange} />
+          <input className="button" type="button" value="Submit" />
+          </form>)}
+
+        {!this.state.showInput && (<h3>{this.state.value}</h3>)}
+
+          
+        
         <Results geoObject={this.state.geoObject} value={this.state.value} />
+        <button >Edit</button>or
+        <button>Delete</button><br />
         <Map geoObject={this.state.geoObject} />
       </div>
     );
