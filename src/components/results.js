@@ -2,14 +2,15 @@ import React from "react";
 
 export default function Results(props) {
   const object = props.geoObject;
+  
   console.log("results");
-  return (
-    
+  return (    
     <div className="results">
       <p />
+      <h2>Search query</h2>
       <h3>{object.type}</h3>
-      <p>{object.lng}</p>
-      <p>{object.lat}</p>
+      <p>Latitude: {object.lat}</p>
+      <p>Longitude: {object.lng}</p>
     </div>
   );
 }
