@@ -1,8 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 
 export default function Results(props) {
   const object = props.geoObject;
+  console.log("results");
   return (
+    
     <div className="results">
       <p />
       <h3>{object.type}</h3>

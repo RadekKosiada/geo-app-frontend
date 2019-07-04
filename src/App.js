@@ -21,7 +21,7 @@ class App extends Component {
     return (
       <div className="App">
         <Results geoObject={this.state.geoObject} />
-        <Map />
+        <Map geoObject={this.state.geoObject}/>
       </div>
     );
   }
