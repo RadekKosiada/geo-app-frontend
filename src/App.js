@@ -31,8 +31,14 @@ class App extends Component {
     this.setState({
       showInput: false
     })
-    // axios.post
+    //submitting searchQuery to the server
+    axios.post('/submitQuery', {
+      searchQuery: this.state.value
+  })
+  .then(response => console.log(response))
+  .catch(err => console.log("Error in submitting query to backend: ", err.message))
   }
+
   submitOnEnter(e) {
     if(e.key === 'Enter') {
       this.handleSubmit(e);
