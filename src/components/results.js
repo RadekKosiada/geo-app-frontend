@@ -1,17 +1,16 @@
 import React from "react";
 
 export default function Results(props) {
-  const object = props.geoObject;
- 
-  console.log("results");
+  const coordinates = props.markerPosition;
+
   return (    
     <div className="results">
       <p />
       {/* {props.value && (<p>{props.value}</p>)}
       {!props.value && (<p>your location</p>)} */}
-      <h3>{object.type}</h3>
-      <p>Latitude: {object.lat}</p>
-      <p>Longitude: {object.lng}</p>
+      <h3>{props.geoObject.type}</h3>
+      <p>Latitude: {coordinates[0]}</p>
+      <p>Longitude: {coordinates[1]}</p>
     </div>
   );
 }
