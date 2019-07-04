@@ -14,6 +14,8 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.submitOnEnter = this.submitOnEnter.bind(this);
+    this.activateEditMode = this.activateEditMode.bind(this);
+    this.deleteSearchQuery = this.deleteSearchQuery.bind(this);
   }
   componentDidMount() {
     fetch("/api")
@@ -42,12 +44,22 @@ class App extends Component {
       value: e.target.value
     });
   }
-
+  activateEditMode() {
+    this.setState({
+      showInput: true,
+    })
+  }
+  deleteSearchQuery() {
+    this.setState({
+      showInput: true,
+      value: ''
+    })
+  }
   render() {
     return (
       <div className="App">
          {this.state.showInput && (<form className="" onSubmit={this.handleSubmit}>
-         <input type="text" autoComplete="off" placeholder="your desired location" name="answer" onKeyPress={this.submitOnEnter} onChange={this.handleChange} />
+         <input type="text" autoComplete="off" placeholder="your desired location" value={this.state.value} name="answer" onKeyPress={this.submitOnEnter} onChange={this.handleChange} />
           <input className="button" type="button" value="Submit" />
           </form>)}
 
@@ -56,8 +68,8 @@ class App extends Component {
           
         
         <Results geoObject={this.state.geoObject} value={this.state.value} />
-        <button >Edit</button>or
-        <button>Delete</button><br />
+        <button onClick={this.activateEditMode}>Edit</button>or
+        <button onClick={this.deleteSearchQuery}>Delete</button><br />
         <Map geoObject={this.state.geoObject} />
       </div>
     );
