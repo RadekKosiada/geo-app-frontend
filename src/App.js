@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Results1 from "./components/results1";
 import SubmitForm from "./components/submitForm";
+import Buttons from "./components/buttons";
 import Results2 from "./components/results2";
 import MapComponent from "./components/map";
 import axios from "axios";
@@ -88,42 +89,28 @@ class App extends Component {
     return (
       <div className="App">
         <div id="results-container1">
-          <SubmitForm 
-            showInput1={this.state.showInput1} 
-            handleSubmit={this.handleSubmit} 
-            handleChange={this.handleChange} 
-            value={this.state.value} 
+          <SubmitForm
+            showInput1={this.state.showInput1}
+            handleSubmit={this.handleSubmit}
+            handleChange={this.handleChange}
+            value={this.state.value}
             submitOnEnter={this.submitOnEnter}
           />
-          <Results1 geoObject={this.state.geoObject} markerPosition={this.state.markerPosition} value={this.state.value} showInput1={this.state.showInput1} />
-          <button onClick={this.editSearchQuery}>Edit</button>or
-          <button onClick={this.deleteSearchQuery}>Delete</button>
-          <button onClick={this.testData}>TEST</button>
+          <Results1 
+            geoObject={this.state.geoObject} 
+            markerPosition={this.state.markerPosition} 
+            value={this.state.value} 
+            showInput1={this.state.showInput1} 
+          />
+          <Buttons 
+            editSearchQuery={this.editSearchQuery}
+            deleteSearchQuery={this.deleteSearchQuery}
+          />
         </div>
         {/* <div id="results-container2">
-          {this.state.showInput2 && (
-            <form className="" onSubmit={this.handleSubmit}>
-              <input
-                type="text"
-                autoComplete="off"
-                placeholder="your desired location"
-                value={this.state.value}
-                name="answer"
-                onKeyPress={this.submitOnEnter}
-                onChange={this.handleChange}
-              />
-              <input className="button" type="button" value="Submit" />
-            </form>
-          )}
-
-          {!this.state.showInput && <h3>{this.state.value}</h3>}
-
-          <Results2 />
-          <button onClick={this.editSearchQuery}>Edit</button>or
-          <button onClick={this.deleteSearchQuery}>Delete</button>
-          <button onClick={this.testData}>TEST</button>
+          
         </div> */}
-       
+
         <br />
         <MapComponent markerPosition={this.state.markerPosition} />
       </div>
