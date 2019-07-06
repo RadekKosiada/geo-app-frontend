@@ -38,7 +38,7 @@ class Marker extends Component {
     super(props);
   }
   componentWillUpdate() {}
-  render() {   
-      return <CircleMarker center={this.props.markerPosition} />;
+  render() {
+    return <CircleMarker center={this.props.markerPosition} />;
   }
 }

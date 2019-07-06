@@ -37,10 +37,14 @@ class App extends Component {
         this.setState({
           geoObject: response.data[1],
           markerPosition: [response.data[1].lat, response.data[1].lng],
-          errorMessage: response.data[2] 
+          errorMessage: response.data[2]
         })
-        console.log(response.data[1], !response.data[1].lat);
+        console.log(response.data[1], response.data[2]);
         console.log(this.state.geoObject)
+        //alert error message when no data received 
+        if(this.state.errorMessage) {
+          alert(this.state.errorMessage)
+        }
       })
       .catch(err =>
         console.log("Error in submitting query to backend: ", err.message)
@@ -65,11 +69,13 @@ class App extends Component {
     });
   }
   deleteSearchQuery() {
+    console.log("DS FIRED")
     this.setState({
+      errorMessage : "",
       showInput: true,
       value: "",
       markerPosition: "",
-      geoObject: ""
+      geoObject: {}
     });
   }
   testData() {
