@@ -11,7 +11,8 @@ class App extends Component {
       geoObject: {},
       value: "",
       showInput: true,
-      markerPosition: ""
+      markerPosition: "",
+      errorMessage : "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,17 +23,17 @@ class App extends Component {
   }
 
 
-  renderData() {
-    fetch("/api")
-      .then(res => res.json())
-      .then(geolocation =>
-        this.setState({
-          geoObject: geolocation,
-          markerPosition: [geolocation.lat, geolocation.lng]
-        })
-      )
-      .catch(err => console.log);
-  }
+  // renderData() {
+  //   fetch('/api')
+  //     .then(res => res.json())
+  //     .then(geolocation =>
+  //       this.setState({
+  //         geoObject: geolocation,
+  //         markerPosition: [geolocation.lat, geolocation.lng]
+  //       })
+  //     )
+  //     .catch(err => console.log);
+  // }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -40,16 +41,27 @@ class App extends Component {
     this.setState({
       showInput: false
     });
+    // this.renderData();
     //submitting searchQuery to the server
     axios
       .post("/submitQuery", {
         searchQuery: this.state.value
       })
-      .then(response => console.log(response))
+      .then(response => {
+        this.setState({
+          geoObject: response.data[1],
+          markerPosition: [response.data[1].lat, response.data[1].lng],
+          errorMessage: response.data[2]
+          
+        })
+        // this.renderData();
+        console.log(response.data[1], !response.data[1].lat);
+        console.log(this.state.geoObject)
+      })
       .catch(err =>
         console.log("Error in submitting query to backend: ", err.message)
       );
-    this.renderData();
+    // this.renderData();
   }
 
   submitOnEnter(e) {
