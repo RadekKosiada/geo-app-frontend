@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
-import Results1 from "./components/results1";
+import Results from "./components/results";
 import SubmitForm from "./components/submitForm";
 import Buttons from "./components/buttons";
-import Results2 from "./components/results2";
 import MapComponent from "./components/map";
 import axios from "axios";
 
@@ -23,7 +22,6 @@ class App extends Component {
     this.submitOnEnter = this.submitOnEnter.bind(this);
     this.editSearchQuery = this.editSearchQuery.bind(this);
     this.deleteSearchQuery = this.deleteSearchQuery.bind(this);
-    this.testData = this.testData.bind(this);
   }
 
   handleSubmit(e) {
@@ -63,9 +61,7 @@ class App extends Component {
     }
   }
   handleChange(e) {
-    this.setState({
-      value: e.target.value
-    });
+    this.setState({ value: e.target.value });
   }
   editSearchQuery() {
     this.setState({
@@ -82,9 +78,6 @@ class App extends Component {
       geoObject: {}
     });
   }
-  testData() {
-    console.log(this.state.markerPosition)
-  }
   render() {
     return (
       <div className="App">
@@ -96,7 +89,7 @@ class App extends Component {
             value={this.state.value}
             submitOnEnter={this.submitOnEnter}
           />
-          <Results1 
+          <Results 
             geoObject={this.state.geoObject} 
             markerPosition={this.state.markerPosition} 
             value={this.state.value} 

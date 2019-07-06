@@ -4,14 +4,15 @@ export default function Results(props) {
   const coordinates = props.markerPosition;
   const noData = 'waiting for the data'
 
+
   return (
     <div className="results">
       <p />
-      {/* {props.value && (<p>{props.value}</p>)}
-      {!props.value && (<p>your location</p>)} */}
-      <h3>{props.geoObject.type}</h3>
+      <p className={props.showInput1 ? 'invisible' : null}>{props.value}</p>
+      
       {!coordinates && (
         <div>
+          <h4>type: <span className="no-data">{noData}</span></h4>
           <p>Latitude: <span className="no-data">{noData}</span></p>
           <p>Longitude: <span className="no-data">{noData}</span></p>
         </div>
@@ -19,6 +20,7 @@ export default function Results(props) {
 
       {coordinates && (
         <div>
+          <h4>{props.geoObject.type}</h4>
           <p>Latitude: {coordinates[0]}</p>
           <p>Longitude: {coordinates[1]}</p>
         </div>
