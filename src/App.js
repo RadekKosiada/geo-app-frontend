@@ -22,26 +22,12 @@ class App extends Component {
     this.testData = this.testData.bind(this);
   }
 
-
-  // renderData() {
-  //   fetch('/api')
-  //     .then(res => res.json())
-  //     .then(geolocation =>
-  //       this.setState({
-  //         geoObject: geolocation,
-  //         markerPosition: [geolocation.lat, geolocation.lng]
-  //       })
-  //     )
-  //     .catch(err => console.log);
-  // }
-
   handleSubmit(e) {
     e.preventDefault();
     console.log("Submit fired!");
     this.setState({
       showInput: false
     });
-    // this.renderData();
     //submitting searchQuery to the server
     axios
       .post("/submitQuery", {
@@ -51,17 +37,14 @@ class App extends Component {
         this.setState({
           geoObject: response.data[1],
           markerPosition: [response.data[1].lat, response.data[1].lng],
-          errorMessage: response.data[2]
-          
+          errorMessage: response.data[2] 
         })
-        // this.renderData();
         console.log(response.data[1], !response.data[1].lat);
         console.log(this.state.geoObject)
       })
       .catch(err =>
         console.log("Error in submitting query to backend: ", err.message)
       );
-    // this.renderData();
   }
 
   submitOnEnter(e) {
