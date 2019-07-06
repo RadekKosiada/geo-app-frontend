@@ -2,13 +2,26 @@
   text-align: center;
 }
 
-#map { 
+.map { 
   display: inline-block;
-  height: 380px; 
-  width: 80%;
   border: 1px solid black;
+}
+
+#results-container1, #results-container2 {
+  display: inline-block;
+}
+#results-container2 {
+  margin-left: 20px;
+}
+
+form {
+  display: inline-block;
 }
 
 .no-data {
   opacity: 0.5;
+}
+
+.invisible {
+  display: none;
 }
