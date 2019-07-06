@@ -13,15 +13,6 @@ class MapComponent extends Component {
     //   markerPosition: ''
     // };
   }
-  componentDidUpdate() {
-    console.log(this.props.markerPosition);
-    // this.setState({
-    //   markerPosition: this.props.markerPosition
-    // })
-  }
-  componentDidMount() {
-    console.log(this.props.markerPosition);
-  }
   render() {
     return (
       <Map
@@ -30,9 +21,11 @@ class MapComponent extends Component {
         center={[germanLat, germanLng]}
       >
         <TileLayer url="http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        {/* {this.props.markerPosition && (<CircleMarker center={this.props.markerPosition} />)} */}
-        {/* {this.props.markerPosition &&(<Marker markerPosition={this.props.markerPosition} />)} */}
-        <Marker markerPosition={this.props.markerPosition} />
+
+        {this.props.markerPosition[0] && (
+          <Marker markerPosition={this.props.markerPosition} />
+        )}
+        {!this.props.markerPosition[0] && <h1>Hello</h1>}
       </Map>
     );
   }
@@ -42,18 +35,10 @@ export default MapComponent;
 
 class Marker extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
-  componentWillUpdate() {
-
+  componentWillUpdate() {}
+  render() {   
+      return <CircleMarker center={this.props.markerPosition} />;
   }
-  render() {
-    if(this.props.markerPosition) {
-      return (
-        <CircleMarker center={this.props.markerPosition} />
-      )
-    } else return (
-      <div></div>
-    )
-    }
 }
