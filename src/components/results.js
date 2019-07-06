@@ -1,7 +1,8 @@
 import React from "react";
 
 export default function Results(props) {
-  const coordinates = props.markerPosition;
+  const coordinates = props.markerPosition1;
+  console.log(coordinates)
   const noData = 'waiting for the data'
 
 

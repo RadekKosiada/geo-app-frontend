@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 
-
-
 class SubmitForm extends Component {
 
   render() {   
       return (
-        <form className={!this.props.showInput1 ? 'invisible' : null}>
+        <form className={!this.props.showInput1 ? 'invisible' : null} >
           <input
             type="text"
             autoComplete="off"
@@ -19,11 +17,7 @@ class SubmitForm extends Component {
           <input className="button" onClick={this.props.handleSubmit} type="button" value="Submit" />
         </form>
       );
-    
-
   }
 }
-
-
 
 export default SubmitForm;

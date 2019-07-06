@@ -14,7 +14,8 @@ class App extends Component {
       value: "",
       showInput1: true,
       showInput2: true,
-      markerPosition: "",
+      markerPosition1: "",
+      markerPosition2: [53.0758196, 8.8071646],
       errorMessage: "",
     };
     this.handleChange = this.handleChange.bind(this);
@@ -38,7 +39,7 @@ class App extends Component {
       .then(response => {
         this.setState({
           geoObject: response.data[1],
-          markerPosition: [response.data[1].lat, response.data[1].lng],
+          markerPosition1: [response.data[1].lat, response.data[1].lng],
           errorMessage: response.data[2]
         })
         console.log(response.data[1], response.data[2]);
@@ -74,7 +75,7 @@ class App extends Component {
       errorMessage: "",
       showInput1: true,
       value: "",
-      markerPosition: "",
+      markerPosition1: "",
       geoObject: {}
     });
   }
@@ -91,7 +92,7 @@ class App extends Component {
           />
           <Results 
             geoObject={this.state.geoObject} 
-            markerPosition={this.state.markerPosition} 
+            markerPosition1={this.state.markerPosition1} 
             value={this.state.value} 
             showInput1={this.state.showInput1} 
           />
@@ -105,7 +106,11 @@ class App extends Component {
         </div> */}
 
         <br />
-        <MapComponent markerPosition={this.state.markerPosition} />
+        <MapComponent 
+          markerPosition1={this.state.markerPosition1} 
+          markerPosition2={this.state.markerPosition2} 
+          geoObject={this.state.geoObject}
+          />
       </div>
     );
   }
