@@ -8,3 +8,7 @@
   width: 80%;
   border: 1px solid black;
 }
+
+.no-data {
+  opacity: 0.5;
+}
