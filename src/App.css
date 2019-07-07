@@ -6,7 +6,7 @@
   text-align: center;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 30px;
+  grid-column-gap: 10px;
 }
 
 h1, h4 {
@@ -23,12 +23,15 @@ h1, h4 {
 
 #results-container1, #results-container2 {
   display: inline-block;
+  justify-self: left;
   text-align: left;
+  margin-left: 30px;
+  margin-top: 10px;
+  
 }
 
 #results-container2 {
-  margin-left: 20px;
-  margin-top: 20px;
+  
 }
 
 .destination {
