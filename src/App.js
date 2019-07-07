@@ -39,11 +39,11 @@ class App extends Component {
     console.log(e)
     console.log("Submit fired!");
     if (Number(e.target.className) === this.state.className1) {
-      this.setState({ showInput1: false });
+      this.setState({ showInput1: false, geoObject1: "", markerPosition1: "" });
       searchQuery = this.state.value1
     }
     if (Number(e.target.className) === this.state.className2) {
-      this.setState({ showInput2: false });
+      this.setState({ showInput2: false, geoObject2: "", markerPosition2: "" });
       searchQuery = this.state.value2
     }
 
