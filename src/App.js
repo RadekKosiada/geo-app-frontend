@@ -70,8 +70,6 @@ class App extends Component {
             showButtons2: true
           })
         }
-
-        console.log(response.data[0], response.data[2][0]);
         //alert error message when no data received 
         if (this.state.errorMessage1) {
           alert(this.state.errorMessage1)
@@ -109,10 +107,9 @@ class App extends Component {
         showInput2: true
       });
     }
-
   }
+
   deleteSearchQuery(e) {
-    console.log("DS FIRED")
     if (Number(e.target.className) === this.state.className1) {
       this.setState({
         errorMessage1: "",
@@ -132,8 +129,8 @@ class App extends Component {
         showButtons2: false
       });
     }
-
   }
+
   render() {
     return (
       <div className="App">
