@@ -1,17 +1,23 @@
 .App {
+
   text-align: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .map { 
-  display: inline-block;
   border: 1px solid black;
+  align-self: center;
+  justify-self: center;
 }
 
 #results-container1, #results-container2 {
   display: inline-block;
+  
 }
 #results-container2 {
   margin-left: 20px;
+  margin-top: 20px;
 }
 
 .destination {

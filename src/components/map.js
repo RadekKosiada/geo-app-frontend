@@ -17,7 +17,7 @@ class MapComponent extends Component {
     return (
       <Map
         className="map"
-        style={{ height: "400px", width: "70%", display: "inline-block" }}
+        style={{ height: "400px", width: "80%", display: "inline-block" }}
         zoom={5}
         center={[germanLat, germanLng]}
       >
@@ -25,7 +25,7 @@ class MapComponent extends Component {
 
         {this.props.markerPosition1[0] && ( <Marker1 markerPosition1={this.props.markerPosition1} />  )}
         {this.props.markerPosition2[0] && ( <Marker2 markerPosition2={this.props.markerPosition2} />  )}
-        
+
       </Map>
     );
   }
