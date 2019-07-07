@@ -2,21 +2,23 @@ import React, { Component } from "react";
 
 class SubmitForm extends Component {
 
-  render() {   
-      return (
-        <form className={!this.props.showInput1 ? 'invisible' : null} >
+  render() {
+    return (
+      <div>
+        <form className={!this.props.showInput ? 'invisible' : null} >
           <input
             type="text"
             autoComplete="off"
             placeholder="your desired location"
-            value={this.props.value1}
+            value={this.props.value}
             name="answer"
             onKeyPress={this.props.submitOnEnter}
             onChange={this.props.handleChange}
           />
           <input className="button" onClick={this.props.handleSubmit} type="button" value="Submit" />
         </form>
-      );
+      </div>
+    );
   }
 }
 

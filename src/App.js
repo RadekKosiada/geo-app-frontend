@@ -11,9 +11,9 @@ class App extends Component {
     super(props);
     this.state = {
       geoObject1: {},
-      geoObject2: {},
+      geoObject2: {type: "county", lat: 53.0758196, lng: 8.8071646, address: "10117 Berlin, Germany"},
       value1: "",
-      value2: "",
+      value2: "Hamburg",
       showInput1: true,
       showInput2: true,
       markerPosition1: "",
@@ -48,7 +48,7 @@ class App extends Component {
           markerPosition1: [response.data[1][0].geolocation1.lat, response.data[1][0].geolocation1.lng],
           errorMessage1: response.data[1][0].error1
         })
-        console.log(response.data[1][0].error1);
+        console.log("OBJ1", this.state.geoObject1, "OBJ2", this.state.geoObject2);
         //alert error message when no data received 
         if (this.state.errorMessage1) {
           alert(this.state.errorMessage1)
@@ -89,17 +89,17 @@ class App extends Component {
       <div className="App">
         <div id="results-container1">
           <SubmitForm
-            showInput1={this.state.showInput1}
+            showInput={this.state.showInput1}
             handleSubmit={this.handleSubmit}
             handleChange={this.handleChange}
-            value1={this.state.value1}
+            value={this.state.value1}
             submitOnEnter={this.submitOnEnter}
           />
           <Results 
-            geoObject1={this.state.geoObject1} 
-            markerPosition1={this.state.markerPosition1} 
-            value1={this.state.value1} 
-            showInput1={this.state.showInput1} 
+            geoObject={this.state.geoObject1} 
+            markerPosition={this.state.markerPosition1} 
+            value={this.state.value1} 
+            showInput={this.state.showInput1} 
           />
           <Buttons 
             editSearchQuery={this.editSearchQuery}
@@ -108,17 +108,17 @@ class App extends Component {
         </div>
         <div id="results-container2">
         <SubmitForm
-            showInput2={this.state.showInput2}
+            showInput={this.state.showInput2}
             handleSubmit={this.handleSubmit}
             handleChange={this.handleChange}
-            value2={this.state.value2}
+            value={this.state.value2}
             submitOnEnter={this.submitOnEnter}
           />
           <Results 
-            geoObject2={this.state.geoObject2} 
-            markerPosition2={this.state.markerPosition2} 
-            value2={this.state.value2} 
-            showInput2={this.state.showInput2} 
+            geoObject={this.state.geoObject2} 
+            markerPosition={this.state.markerPosition2} 
+            value={this.state.value2} 
+            showInput={this.state.showInput2} 
           />
           <Buttons 
             editSearchQuery={this.editSearchQuery}
