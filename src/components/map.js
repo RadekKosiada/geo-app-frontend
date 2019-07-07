@@ -23,10 +23,9 @@ class MapComponent extends Component {
       >
         <TileLayer url="http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-        {this.props.markerPosition1[0] && (
-          <Marker1 markerPosition1={this.props.markerPosition1} />
-        )}
-        <Marker2 markerPosition2={this.props.markerPosition2} />
+        {this.props.markerPosition1[0] && ( <Marker1 markerPosition1={this.props.markerPosition1} />  )}
+        {this.props.markerPosition2[0] && ( <Marker2 markerPosition2={this.props.markerPosition2} />  )}
+        
       </Map>
     );
   }

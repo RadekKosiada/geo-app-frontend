@@ -14,6 +14,8 @@ class App extends Component {
       geoObject2: {type: "county", lat: 53.0758196, lng: 8.8071646, address: "10117 Berlin, Germany"},
       value1: "",
       value2: "Hamburg",
+      className1: 1,
+      className2: 2,
       showInput1: true,
       showInput2: true,
       markerPosition1: "",
@@ -67,22 +69,41 @@ class App extends Component {
     }
   }
   handleChange(e) {
+    console.log(e)
     this.setState({ value1: e.target.value });
   }
-  editSearchQuery() {
-    this.setState({
-      showInput1: true
-    });
+  editSearchQuery(e) {   
+    if(Number(e.target.className)===this.state.className1) {
+      this.setState({
+        showInput1: true
+      });
+    } else {
+      this.setState({
+        showInput2: true
+      });
+    }
+    
   }
-  deleteSearchQuery() {
+  deleteSearchQuery(e) {
     console.log("DS FIRED")
-    this.setState({
-      errorMessage1: "",
-      showInput1: true,
-      value1: "",
-      markerPosition1: "",
-      geoObject1: {}
-    });
+    if(Number(e.target.className)===this.state.className1) {
+      this.setState({
+        errorMessage1: "",
+        showInput1: true,
+        value1: "",
+        markerPosition1: "",
+        geoObject1: {}
+      });
+    } else {
+      this.setState({
+        errorMessage2: "",
+        showInput2: true,
+        value2: "",
+        markerPosition2: "",
+        geoObject2: {}
+      });
+    }
+    
   }
   render() {
     return (
@@ -101,7 +122,8 @@ class App extends Component {
             value={this.state.value1} 
             showInput={this.state.showInput1} 
           />
-          <Buttons 
+          <Buttons
+            className={this.state.className1}
             editSearchQuery={this.editSearchQuery}
             deleteSearchQuery={this.deleteSearchQuery}
           />
@@ -120,7 +142,8 @@ class App extends Component {
             value={this.state.value2} 
             showInput={this.state.showInput2} 
           />
-          <Buttons 
+          <Buttons
+            className={this.state.className2}
             editSearchQuery={this.editSearchQuery}
             deleteSearchQuery={this.deleteSearchQuery}
           />
