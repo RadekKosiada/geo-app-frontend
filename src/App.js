@@ -10,13 +10,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      geoObject: {},
+      geoObject1: {},
       value: "",
       showInput1: true,
       showInput2: true,
       markerPosition1: "",
       markerPosition2: [53.0758196, 8.8071646],
-      errorMessage: "",
+      errorMessage1: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,15 +38,14 @@ class App extends Component {
       })
       .then(response => {
         this.setState({
-          geoObject: response.data[1][0].geolocation1,
+          geoObject1: response.data[1][0].geolocation1,
           markerPosition1: [response.data[1][0].geolocation1.lat, response.data[1][0].geolocation1.lng],
-          errorMessage: response.data[1][1].error
+          errorMessage1: response.data[1][0].error1
         })
-        console.log(response.data[1][1].error);
-        console.log(this.state.geoObject)
+        console.log(response.data[1][0].error1);
         //alert error message when no data received 
-        if (this.state.errorMessage) {
-          alert(this.state.errorMessage)
+        if (this.state.errorMessage1) {
+          alert(this.state.errorMessage1)
         }
       })
       .catch(err =>
@@ -72,11 +71,11 @@ class App extends Component {
   deleteSearchQuery() {
     console.log("DS FIRED")
     this.setState({
-      errorMessage: "",
+      errorMessage1: "",
       showInput1: true,
       value: "",
       markerPosition1: "",
-      geoObject: {}
+      geoObject1: {}
     });
   }
   render() {
@@ -91,7 +90,7 @@ class App extends Component {
             submitOnEnter={this.submitOnEnter}
           />
           <Results 
-            geoObject={this.state.geoObject} 
+            geoObject1={this.state.geoObject1} 
             markerPosition1={this.state.markerPosition1} 
             value={this.state.value} 
             showInput1={this.state.showInput1} 
@@ -109,7 +108,7 @@ class App extends Component {
         <MapComponent 
           markerPosition1={this.state.markerPosition1} 
           markerPosition2={this.state.markerPosition2} 
-          geoObject={this.state.geoObject}
+          geoObject1={this.state.geoObject1}
           />
       </div>
     );

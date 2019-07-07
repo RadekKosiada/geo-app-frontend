@@ -21,7 +21,7 @@ export default function Results(props) {
 
       {coordinates && (
         <div>
-          <h4>{props.geoObject.type}</h4>
+          <h4>{props.geoObject1.type}</h4>
           <p>Latitude: {coordinates[0]}</p>
           <p>Longitude: {coordinates[1]}</p>
         </div>
