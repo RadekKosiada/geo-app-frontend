@@ -69,8 +69,11 @@ class App extends Component {
     }
   }
   handleChange(e) {
-    console.log(e)
-    this.setState({ value1: e.target.value });
+    if(Number(e.target.className)===this.state.className1) {
+      this.setState({ value1: e.target.value });
+    } else {
+      this.setState({ value2: e.target.value });
+    }
   }
   editSearchQuery(e) {   
     if(Number(e.target.className)===this.state.className1) {
@@ -110,6 +113,7 @@ class App extends Component {
       <div className="App">
         <div id="results-container1">
           <SubmitForm
+            className={this.state.className1}
             showInput={this.state.showInput1}
             handleSubmit={this.handleSubmit}
             handleChange={this.handleChange}
@@ -117,6 +121,7 @@ class App extends Component {
             submitOnEnter={this.submitOnEnter}
           />
           <Results 
+            className={this.state.className1}
             geoObject={this.state.geoObject1} 
             markerPosition={this.state.markerPosition1} 
             value={this.state.value1} 
@@ -130,6 +135,7 @@ class App extends Component {
         </div>
         <div id="results-container2">
         <SubmitForm
+          className={this.state.className2}
             showInput={this.state.showInput2}
             handleSubmit={this.handleSubmit}
             handleChange={this.handleChange}
@@ -137,6 +143,7 @@ class App extends Component {
             submitOnEnter={this.submitOnEnter}
           />
           <Results 
+            className={this.state.className2}
             geoObject={this.state.geoObject2} 
             markerPosition={this.state.markerPosition2} 
             value={this.state.value2} 

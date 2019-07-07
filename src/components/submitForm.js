@@ -1,25 +1,24 @@
-import React, { Component } from "react";
+import React from "react";
 
-class SubmitForm extends Component {
+function SubmitForm(props) {
+  return (
+    <div>
+      <form className={!props.showInput ? 'invisible' : null} >
+        <input
+          className={props.className}
+          type="text"
+          autoComplete="off"
+          placeholder="your desired location"
+          value={props.value}
+          name="answer"
+          onKeyPress={props.submitOnEnter}
+          onChange={props.handleChange}
+        />
+        <input className="button" onClick={props.handleSubmit} type="button" value="Submit" />
+      </form>
+    </div>
+  );
 
-  render() {
-    return (
-      <div>
-        <form className={!this.props.showInput ? 'invisible' : null} >
-          <input
-            type="text"
-            autoComplete="off"
-            placeholder="your desired location"
-            value={this.props.value}
-            name="answer"
-            onKeyPress={this.props.submitOnEnter}
-            onChange={this.props.handleChange}
-          />
-          <input className="button" onClick={this.props.handleSubmit} type="button" value="Submit" />
-        </form>
-      </div>
-    );
-  }
 }
 
 export default SubmitForm;
