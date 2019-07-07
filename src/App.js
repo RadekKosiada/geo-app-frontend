@@ -11,7 +11,7 @@ class App extends Component {
     super(props);
     this.state = {
       geoObject1: {},
-      value: "",
+      value1: "",
       showInput1: true,
       showInput2: true,
       markerPosition1: "",
@@ -34,7 +34,10 @@ class App extends Component {
     //submitting searchQuery to the server
     axios
       .post("/submitQuery", {
-        searchQuery: this.state.value
+        //if (this.state.value1) {
+        // searchQuery1: this.state.value2
+        // } else {
+        searchQuery: this.state.value1
       })
       .then(response => {
         this.setState({
@@ -61,7 +64,7 @@ class App extends Component {
     }
   }
   handleChange(e) {
-    this.setState({ value: e.target.value });
+    this.setState({ value1: e.target.value });
   }
   editSearchQuery() {
     this.setState({
@@ -73,7 +76,7 @@ class App extends Component {
     this.setState({
       errorMessage1: "",
       showInput1: true,
-      value: "",
+      value1: "",
       markerPosition1: "",
       geoObject1: {}
     });
@@ -86,13 +89,13 @@ class App extends Component {
             showInput1={this.state.showInput1}
             handleSubmit={this.handleSubmit}
             handleChange={this.handleChange}
-            value={this.state.value}
+            value1={this.state.value1}
             submitOnEnter={this.submitOnEnter}
           />
           <Results 
             geoObject1={this.state.geoObject1} 
             markerPosition1={this.state.markerPosition1} 
-            value={this.state.value} 
+            value1={this.state.value1} 
             showInput1={this.state.showInput1} 
           />
           <Buttons 

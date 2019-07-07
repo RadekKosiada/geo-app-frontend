@@ -9,7 +9,7 @@ class SubmitForm extends Component {
             type="text"
             autoComplete="off"
             placeholder="your desired location"
-            value={this.props.value}
+            value={this.props.value1}
             name="answer"
             onKeyPress={this.props.submitOnEnter}
             onChange={this.props.handleChange}

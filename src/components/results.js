@@ -9,7 +9,7 @@ export default function Results(props) {
   return (
     <div className="results">
       <p />
-      <p className={props.showInput1 ? 'invisible' : null}>{props.value}</p>
+      <p className={props.showInput1 ? 'invisible' : null}>{props.value1}</p>
       
       {!coordinates && (
         <div>
