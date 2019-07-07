@@ -1,20 +1,31 @@
-.App {
+* {
+  font-family: 'Noto Sans JP', sans-serif;
+}
 
+.App {
   text-align: center;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 30px;
+}
+
+h1, h4 {
+  color: rgb(30,144,255);
 }
 
 .map { 
-  border: 1px solid black;
-  align-self: center;
-  justify-self: center;
+  justify-self: right;
+}
+
+#input-container {
+  justify-self: left;
 }
 
 #results-container1, #results-container2 {
   display: inline-block;
-  
+  text-align: left;
 }
+
 #results-container2 {
   margin-left: 20px;
   margin-top: 20px;
@@ -23,6 +34,7 @@
 .destination {
   text-transform: capitalize;
 }
+
 form {
   display: inline-block;
 }
@@ -34,4 +46,22 @@ form {
 
 .invisible {
   display: none;
+}
+
+button, input[type=button], input[type=text] {
+  border: 1px solid lightgray;
+  background-color: white;
+  border-radius: 5px;
+  padding: 7px 10px;
+  transition-duration: 0.5s;
+}
+
+input[type=text]:focus {
+  border: 1px solid black;
+  outline: none;
+}
+
+button:hover, input[type=button]:hover {
+  cursor: pointer;
+  border: 1px solid black;
 }
