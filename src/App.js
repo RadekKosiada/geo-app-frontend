@@ -34,39 +34,39 @@ class App extends Component {
 
   handleSubmit(e) {
     let searchQuery = "";
-    let param = null;
+    let index = null;
     e.preventDefault();
-    console.log(e)
-    console.log("Submit fired!");
+
     if (Number(e.target.className) === this.state.className1) {
       this.setState({ showInput1: false, geoObject1: "", markerPosition1: "" });
       searchQuery = this.state.value1
     }
+
     if (Number(e.target.className) === this.state.className2) {
       this.setState({ showInput2: false, geoObject2: "", markerPosition2: "" });
       searchQuery = this.state.value2
     }
 
-    param = Number(e.target.className);
+    index = Number(e.target.className);
     //submitting searchQuery to the server
     axios
-      .post(`/submitQuery/${param}`, {
+      .post(`/submitQuery/${index}`, {
         searchQuery: searchQuery
       })
       .then(response => {
-        if (param === this.state.className1) {
+        if (index === this.state.className1) {
           this.setState({
-            geoObject1: response.data[param][0].geolocation,
-            markerPosition1: [response.data[param][0].geolocation.lat, response.data[param][0].geolocation.lng],
-            errorMessage1: response.data[param][0].error,
+            geoObject1: response.data[index][0].geolocation,
+            markerPosition1: [response.data[index][0].geolocation.lat, response.data[index][0].geolocation.lng],
+            errorMessage1: response.data[index][0].error,
             showButtons1: true
           })
         }
-        if (param === this.state.className2) {
+        if (index === this.state.className2) {
           this.setState({
-            geoObject2: response.data[param][0].geolocation,
-            markerPosition2: [response.data[param][0].geolocation.lat, response.data[param][0].geolocation.lng],
-            errorMessage2: response.data[param][0].error,
+            geoObject2: response.data[index][0].geolocation,
+            markerPosition2: [response.data[index][0].geolocation.lat, response.data[index][0].geolocation.lng],
+            errorMessage2: response.data[index][0].error,
             showButtons2: true
           })
         }
