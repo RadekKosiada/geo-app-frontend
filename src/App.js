@@ -11,12 +11,15 @@ class App extends Component {
     super(props);
     this.state = {
       geoObject1: {},
+      geoObject2: {},
       value1: "",
+      value2: "",
       showInput1: true,
       showInput2: true,
       markerPosition1: "",
       markerPosition2: [53.0758196, 8.8071646],
       errorMessage1: "",
+      errorMessage2: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -103,15 +106,30 @@ class App extends Component {
             deleteSearchQuery={this.deleteSearchQuery}
           />
         </div>
-        {/* <div id="results-container2">
-          
-        </div> */}
+        <div id="results-container2">
+        <SubmitForm
+            showInput2={this.state.showInput2}
+            handleSubmit={this.handleSubmit}
+            handleChange={this.handleChange}
+            value2={this.state.value2}
+            submitOnEnter={this.submitOnEnter}
+          />
+          <Results 
+            geoObject2={this.state.geoObject2} 
+            markerPosition2={this.state.markerPosition2} 
+            value2={this.state.value2} 
+            showInput2={this.state.showInput2} 
+          />
+          <Buttons 
+            editSearchQuery={this.editSearchQuery}
+            deleteSearchQuery={this.deleteSearchQuery}
+          />
+        </div>
 
         <br />
         <MapComponent 
           markerPosition1={this.state.markerPosition1} 
           markerPosition2={this.state.markerPosition2} 
-          geoObject1={this.state.geoObject1}
           />
       </div>
     );
