@@ -11,15 +11,15 @@ class App extends Component {
     super(props);
     this.state = {
       geoObject1: {},
-      geoObject2: {type: "county", lat: 53.0758196, lng: 8.8071646, address: "10117 Berlin, Germany"},
+      geoObject2: {},
       value1: "",
       value2: "",
-      className1: 0,
-      className2: 1,
+      className1: 1,
+      className2: 2,
       showInput1: true,
       showInput2: true,
       markerPosition1: "",
-      markerPosition2: [53.0758196, 8.8071646],
+      markerPosition2: "",
       errorMessage1: "",
       errorMessage2: ""
     };
@@ -40,25 +40,45 @@ class App extends Component {
       this.setState({
         showInput1: false
       });
-      searchQuery = this.state.value1
-      
+      searchQuery = this.state.value1  
     }
-    param = e.target.className;
+    if(Number(e.target.className)===this.state.className2) {
+      this.setState({
+        showInput2: false
+      });
+      searchQuery = this.state.value2 
+    }
+
+    param = Number(e.target.className);
     //submitting searchQuery to the server
     axios
       .post(`/submitQuery/${param}`, {
         searchQuery: searchQuery
       })
       .then(response => {
-        this.setState({
-          geoObject1: response.data[1][0].geolocation1,
-          markerPosition1: [response.data[1][0].geolocation1.lat, response.data[1][0].geolocation1.lng],
-          errorMessage1: response.data[1][0].error1
-        })
-        console.log("OBJ1", this.state.geoObject1, "OBJ2", this.state.geoObject2);
+        console.log("PARAM", typeof param, typeof this.state.className1);
+        if(param===this.state.className1) {
+          this.setState({
+            geoObject1: response.data[param][0].geolocation,
+            markerPosition1: [response.data[param][0].geolocation.lat, response.data[param][0].geolocation.lng],
+            errorMessage1: response.data[param][0].error
+          })
+        }
+        if(param===this.state.className2) {
+          this.setState({
+            geoObject2: response.data[param][0].geolocation,
+            markerPosition2: [response.data[param][0].geolocation.lat, response.data[param][0].geolocation.lng],
+            errorMessage2: response.data[param][0].error
+          })
+        }
+        
+        console.log(response.data[0], response.data[2][0]);
         //alert error message when no data received 
         if (this.state.errorMessage1) {
           alert(this.state.errorMessage1)
+        }
+        if(this.state.errorMessage2) {
+          alert(this.state.errorMessage2)
         }
       })
       .catch(err =>
