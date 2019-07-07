@@ -38,11 +38,11 @@ class App extends Component {
       })
       .then(response => {
         this.setState({
-          geoObject: response.data[1],
-          markerPosition1: [response.data[1].lat, response.data[1].lng],
-          errorMessage: response.data[2]
+          geoObject: response.data[1][0].geolocation1,
+          markerPosition1: [response.data[1][0].geolocation1.lat, response.data[1][0].geolocation1.lng],
+          errorMessage: response.data[1][1].error
         })
-        console.log(response.data[1], response.data[2]);
+        console.log(response.data[1][1].error);
         console.log(this.state.geoObject)
         //alert error message when no data received 
         if (this.state.errorMessage) {
