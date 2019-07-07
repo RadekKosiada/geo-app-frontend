@@ -14,7 +14,7 @@ function SubmitForm(props) {
           onKeyPress={props.submitOnEnter}
           onChange={props.handleChange}
         />
-        <input className="button" onClick={props.handleSubmit} type="button" value="Submit" />
+        <input className={props.className} onClick={props.handleSubmit} type="button" value="Submit" />
       </form>
     </div>
   );

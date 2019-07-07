@@ -13,9 +13,9 @@ class App extends Component {
       geoObject1: {},
       geoObject2: {type: "county", lat: 53.0758196, lng: 8.8071646, address: "10117 Berlin, Germany"},
       value1: "",
-      value2: "Hamburg",
-      className1: 1,
-      className2: 2,
+      value2: "",
+      className1: 0,
+      className2: 1,
       showInput1: true,
       showInput2: true,
       markerPosition1: "",
@@ -31,18 +31,23 @@ class App extends Component {
   }
 
   handleSubmit(e) {
+    let searchQuery = "";
+    let param = null; 
     e.preventDefault();
+    console.log(e)
     console.log("Submit fired!");
-    this.setState({
-      showInput1: false
-    });
+    if(Number(e.target.className)===this.state.className1) {
+      this.setState({
+        showInput1: false
+      });
+      searchQuery = this.state.value1
+      
+    }
+    param = e.target.className;
     //submitting searchQuery to the server
     axios
-      .post("/submitQuery", {
-        //if (this.state.value1) {
-        // searchQuery1: this.state.value2
-        // } else {
-        searchQuery: this.state.value1
+      .post(`/submitQuery/${param}`, {
+        searchQuery: searchQuery
       })
       .then(response => {
         this.setState({
