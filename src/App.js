@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import "./App.css";
-import Results from "./components/results";
-import SubmitForm from "./components/submitForm";
-import Buttons from "./components/buttons";
 import MapComponent from "./components/map";
 import Location from "./components/location";
 import axios from "axios";
@@ -32,7 +29,22 @@ class App extends Component {
     this.editSearchQuery = this.editSearchQuery.bind(this);
     this.deleteSearchQuery = this.deleteSearchQuery.bind(this);
   }
-
+  updateLocation1(geolocation, error) {
+    this.setState({
+      geoObject1: geolocation,
+      markerPosition1: [geolocation.lat, geolocation.lng],
+      errorMessage1: error,
+      showButtons1: true
+    })
+  }
+  updateLocation2(geolocation, error) {
+    this.setState({
+      geoObject2: geolocation,
+      markerPosition2: [geolocation.lat, geolocation.lng],
+      errorMessage2: error,
+      showButtons2: true
+    })
+  }
   handleSubmit(e) {
     let searchQuery = "";
     let index = null;
