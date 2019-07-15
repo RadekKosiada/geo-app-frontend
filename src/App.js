@@ -29,7 +29,9 @@ class App extends Component {
     this.editSearchQuery = this.editSearchQuery.bind(this);
     this.deleteSearchQuery = this.deleteSearchQuery.bind(this);
   }
-  updateLocation1(geolocation, error) {
+  // we are passing this object response.data[index][0]
+  // and with {} we destructure it in two arguments with the same names; ES6
+  updateLocation1({geolocation, error}) {
     this.setState({
       geoObject1: geolocation,
       markerPosition1: [geolocation.lat, geolocation.lng],
@@ -37,7 +39,7 @@ class App extends Component {
       showButtons1: true
     })
   }
-  updateLocation2(geolocation, error) {
+  updateLocation2({geolocation, error}) {
     this.setState({
       geoObject2: geolocation,
       markerPosition2: [geolocation.lat, geolocation.lng],
@@ -69,20 +71,10 @@ class App extends Component {
       .then(response => {
         console.log(response)
         if (index === this.state.className1) {
-          this.setState({
-            geoObject1: response.data[index][0].geolocation,
-            markerPosition1: [response.data[index][0].geolocation.lat, response.data[index][0].geolocation.lng],
-            errorMessage1: response.data[index][0].error,
-            showButtons1: true
-          })
+          this.updateLocation1(response.data[index][0])
         }
         if (index === this.state.className2) {
-          this.setState({
-            geoObject2: response.data[index][0].geolocation,
-            markerPosition2: [response.data[index][0].geolocation.lat, response.data[index][0].geolocation.lng],
-            errorMessage2: response.data[index][0].error,
-            showButtons2: true
-          })
+          this.updateLocation2(response.data[index][0])
         }
         //alert error message when no data received 
         if (this.state.errorMessage1) {
