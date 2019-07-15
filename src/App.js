@@ -155,29 +155,19 @@ class App extends Component {
             deleteSearchQuery={this.deleteSearchQuery}
           />
 
-          <div id="results-container2">
-            <SubmitForm
-              className={this.state.className2}
-              showInput={this.state.showInput2}
-              handleSubmit={this.handleSubmit}
-              handleChange={this.handleChange}
-              value={this.state.value2}
-              submitOnEnter={this.submitOnEnter}
-            />
-            <Results
-              className={this.state.className2}
-              geoObject={this.state.geoObject2}
-              markerPosition={this.state.markerPosition2}
-              value={this.state.value2}
-              showInput={this.state.showInput2}
-            />
-            <Buttons
-              showButtons={this.state.showButtons2}
-              className={this.state.className2}
-              editSearchQuery={this.editSearchQuery}
-              deleteSearchQuery={this.deleteSearchQuery}
-            />
-          </div>
+          <Location
+            className={this.state.className2}
+            showInput={this.state.showInput2}
+            handleSubmit={this.handleSubmit}
+            handleChange={this.handleChange}
+            value={this.state.value2}
+            submitOnEnter={this.submitOnEnter}
+            geoObject={this.state.geoObject2}
+            markerPosition={this.state.markerPosition2}
+            showButtons={this.state.showButtons2}
+            editSearchQuery={this.editSearchQuery}
+            deleteSearchQuery={this.deleteSearchQuery}
+          />
         </div>
       </div>
     );

@@ -24,7 +24,7 @@ h1{
   justify-self: left;
 }
 
-#results-container1, #results-container2 {
+.results-container {
   display: inline-block;
   justify-self: left;
   text-align: left;

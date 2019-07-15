@@ -6,7 +6,7 @@ import Buttons from "./buttons";
 function Location(props) {
   return (
     // check if i need id??
-    <div id="results-container1">
+    <div className="results-container">
       <SubmitForm
         className={props.className}
         showInput={props.showInput}
