@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import MapComponent from "./components/map";
 import Location from "./components/location";
-import axios from "axios";
 
 class App extends Component {
   constructor(props) {
@@ -24,10 +23,10 @@ class App extends Component {
       errorMessage2: ""
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.submitOnEnter = this.submitOnEnter.bind(this);
     this.editSearchQuery = this.editSearchQuery.bind(this);
     this.deleteSearchQuery = this.deleteSearchQuery.bind(this);
+    this.updateLocation1 = this.updateLocation1.bind(this);
+    this.updateLocation2 = this.updateLocation2.bind(this);
   }
   // we are passing this object response.data[index][0]
   // and with {} we destructure it in two arguments with the same names; ES6
@@ -36,7 +35,8 @@ class App extends Component {
       geoObject1: geolocation,
       markerPosition1: [geolocation.lat, geolocation.lng],
       errorMessage1: error,
-      showButtons1: true
+      showButtons1: true,
+      showInput1: ""
     })
   }
   updateLocation2({geolocation, error}) {
@@ -44,58 +44,11 @@ class App extends Component {
       geoObject2: geolocation,
       markerPosition2: [geolocation.lat, geolocation.lng],
       errorMessage2: error,
-      showButtons2: true
+      showButtons2: true,
+      showInput2: ""
     })
   }
-  handleSubmit(e) {
-    let searchQuery = "";
-    let index = null;
-    e.preventDefault();
-
-    if (Number(e.target.className) === this.state.className1) {
-      this.setState({ showInput1: false, geoObject1: "", markerPosition1: "" });
-      searchQuery = this.state.value1
-    }
-
-    if (Number(e.target.className) === this.state.className2) {
-      this.setState({ showInput2: false, geoObject2: "", markerPosition2: "" });
-      searchQuery = this.state.value2
-    }
-
-    index = Number(e.target.className);
-    //submitting searchQuery to the server
-    axios
-      .post(`/submitQuery/${index}`, {
-        searchQuery: searchQuery
-      })
-      .then(response => {
-        console.log(response)
-        if (index === this.state.className1) {
-          this.updateLocation1(response.data[index][0])
-        }
-        if (index === this.state.className2) {
-          this.updateLocation2(response.data[index][0])
-        }
-        //alert error message when no data received 
-        if (this.state.errorMessage1) {
-          alert(this.state.errorMessage1)
-        }
-        if (this.state.errorMessage2) {
-          alert(this.state.errorMessage2)
-        }
-      })
-      .catch(err =>
-        console.log("Error in submitting query to backend: ", err.message)
-      );
-  }
-
-  submitOnEnter(e) {
-    if (e.key === "Enter") {
-      this.handleSubmit(e);
-    } else {
-      return;
-    }
-  }
+  
   handleChange(e) {
     if (Number(e.target.className) === this.state.className1) {
       this.setState({ value1: e.target.value });
@@ -151,12 +104,12 @@ class App extends Component {
             handleSubmit={this.handleSubmit}
             handleChange={this.handleChange}
             value={this.state.value1}
-            submitOnEnter={this.submitOnEnter}
             geoObject={this.state.geoObject1}
             markerPosition={this.state.markerPosition1}
             showButtons={this.state.showButtons1}
             editSearchQuery={this.editSearchQuery}
             deleteSearchQuery={this.deleteSearchQuery}
+            updateLocation={this.updateLocation1}
           />
 
           <Location
@@ -165,12 +118,12 @@ class App extends Component {
             handleSubmit={this.handleSubmit}
             handleChange={this.handleChange}
             value={this.state.value2}
-            submitOnEnter={this.submitOnEnter}
             geoObject={this.state.geoObject2}
             markerPosition={this.state.markerPosition2}
             showButtons={this.state.showButtons2}
             editSearchQuery={this.editSearchQuery}
             deleteSearchQuery={this.deleteSearchQuery}
+            updateLocation={this.updateLocation2}
           />
         </div>
       </div>

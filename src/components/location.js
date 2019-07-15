@@ -2,18 +2,42 @@ import React from "react";
 import Results from "./results";
 import SubmitForm from "./submitForm";
 import Buttons from "./buttons";
+import axios from "axios";
 
 function Location(props) {
+  function handleSubmit(e) {
+    debugger
+    e.preventDefault();
+ 
+    //submitting searchQuery to the server
+    axios
+      .post(`/submitQuery/1`, {
+        searchQuery: props.value
+      })
+      .then(response => {
+        console.log(response)       
+          props.updateLocation(response.data[1][0])     
+     
+        //alert error message when no data received 
+        if (response.data[1][0].error) {
+          alert(response.data[1][0].error)
+        }
+      })
+      .catch(err =>
+        console.log("Error in submitting query to backend: ", err.message)
+      );
+  }
+
+
   return (
     // check if i need id??
     <div className="results-container">
       <SubmitForm
         className={props.className}
         showInput={props.showInput}
-        handleSubmit={props.handleSubmit}
+        handleSubmit={handleSubmit}
         handleChange={props.handleChange}
         value={props.value}
-        submitOnEnter={props.submitOnEnter}
       />
       <Results
         className={props.className}
