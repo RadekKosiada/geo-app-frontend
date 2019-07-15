@@ -4,6 +4,7 @@ import Results from "./components/results";
 import SubmitForm from "./components/submitForm";
 import Buttons from "./components/buttons";
 import MapComponent from "./components/map";
+import Location from "./components/location";
 import axios from "axios";
 
 class App extends Component {
@@ -54,6 +55,7 @@ class App extends Component {
         searchQuery: searchQuery
       })
       .then(response => {
+        console.log(response)
         if (index === this.state.className1) {
           this.setState({
             geoObject1: response.data[index][0].geolocation,
@@ -139,29 +141,20 @@ class App extends Component {
           markerPosition2={this.state.markerPosition2}
         />
         <div id="input-container">
-          <div id="results-container1">
-            <SubmitForm
-              className={this.state.className1}
-              showInput={this.state.showInput1}
-              handleSubmit={this.handleSubmit}
-              handleChange={this.handleChange}
-              value={this.state.value1}
-              submitOnEnter={this.submitOnEnter}
-            />
-            <Results
-              className={this.state.className1}
-              geoObject={this.state.geoObject1}
-              markerPosition={this.state.markerPosition1}
-              value={this.state.value1}
-              showInput={this.state.showInput1}
-            />
-            <Buttons
-              className={this.state.className1}
-              showButtons={this.state.showButtons1}
-              editSearchQuery={this.editSearchQuery}
-              deleteSearchQuery={this.deleteSearchQuery}
-            />
-          </div>
+          <Location
+            className={this.state.className1}
+            showInput={this.state.showInput1}
+            handleSubmit={this.handleSubmit}
+            handleChange={this.handleChange}
+            value={this.state.value1}
+            submitOnEnter={this.submitOnEnter}
+            geoObject={this.state.geoObject1}
+            markerPosition={this.state.markerPosition1}
+            showButtons={this.state.showButtons1}
+            editSearchQuery={this.editSearchQuery}
+            deleteSearchQuery={this.deleteSearchQuery}
+          />
+
           <div id="results-container2">
             <SubmitForm
               className={this.state.className2}
