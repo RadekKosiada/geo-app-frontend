@@ -1,12 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import Results from "./results";
 import SubmitForm from "./submitForm";
 import Buttons from "./buttons";
 import axios from "axios";
 
+
 function Location(props) {
+  // const [showInput, setShowInput] = useState(true);
+  
+  // setShowInput(false);
+
   function handleSubmit(e) {
-    debugger
     e.preventDefault();
  
     //submitting searchQuery to the server

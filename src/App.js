@@ -58,6 +58,7 @@ class App extends Component {
   }
   editSearchQuery(e) {
     if (Number(e.target.className) === this.state.className1) {
+      
       this.setState({
         showInput1: true
       });
@@ -132,3 +133,5 @@ class App extends Component {
 }
 
 export default App;
+
+// in the state of app => array of locations; instead of passing 
