@@ -21,7 +21,7 @@ Additional hover effects on buttons;
 * Adding unit and integration tests;
 * Refactoring of App.js, mainly to get rid of some repetitions in if blocks, that check which locations/input should be updated;
  
-## Backend
+## [Backend](https://github.com/RadekKosiada/geo-app-backend)
 
 ### Built with:
 * Node.js;
