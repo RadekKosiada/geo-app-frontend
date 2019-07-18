@@ -13,7 +13,7 @@ function SubmitForm(props) {
           name="answer"
           onChange={props.handleChange}
         />
-        <input className={props.className} type="button" value="Submit" />
+        <input className={props.className} type="submit" value="Submit" />
       </form>
     </div>
   );
