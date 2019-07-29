@@ -111,6 +111,18 @@ class App extends Component {
             editSearchQuery={this.editSearchQuery}
             deleteSearchQuery={this.deleteSearchQuery}
             updateLocation={this.updateLocation1}
+
+            //commented out as it should all go to Location as a local state;
+            //below we are calling function and can get data for marker to pass it to the Map
+
+            // if so many props are sent => performance issue ans the page rerenders each time!
+
+            //Location needs to be a state component;
+            //in general communication as thin as possible;
+
+            //try to make Location with hooks
+            //first make a stateful component and then refactor with Hooks
+            // onLocationUpdated={(data) => this.updateMarker(1, data)}
           />
 
           <Location
